@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>HERE IS SOME CLIENT SHIT</h1>
+    <slot/>
   </div>
 </template>
 

@@ -48,7 +48,7 @@ const links = [
   //   badge: 100
   // },
   {
-    label: 'News',
+    label: '',
     icon: 'i-heroicons-home',
     to: '/'
   }, {
