@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import {feedsInfo} from "~~/utils/api";
+
 const config = {
   wrapper: 'py-8 relative',
   base: 'group relative flex items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75',
@@ -39,27 +41,5 @@ const config = {
   },
 }
 
-const links = [
-  // {
-  //   label: 'Profile',
-  //   avatar: {
-  //     src: 'https://avatars.githubusercontent.com/u/739984?v=4'
-  //   },
-  //   badge: 100
-  // },
-  {
-    label: '',
-    icon: 'i-heroicons-home',
-    to: '/'
-  }, {
-    label: 'Most recent',
-    icon: 'i-heroicons-chart-bar',
-    to: ``
-  },
-  // {
-  //   label: 'Command Palette',
-  //   icon: 'i-heroicons-command-line',
-  //   to: '/components/command-palette'
-  // }
-]
+const links = ref(Object.values(feedsInfo))
 </script>

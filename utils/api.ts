@@ -1,9 +1,6 @@
 export const feedsInfo = {
-    noticias: {title: 'Notícias'},
-    'mais-recentes': {title: 'Mais recentes'},
-    // ask: {title: 'Ask', pages: 2},
-    // show: {title: 'Show', pages: 2},
-    // jobs: {title: 'Jobs', pages: 1},
+    noticias: {label: 'Notícias', icon: 'i-heroicons-home', to: '/'},
+    'mais-recentes': {label: 'Mais recentes', icon: 'i-heroicons-chart-bar', to: '/mais-recentes'},
 }
 
 export const validFeeds = Object.keys(feedsInfo)
