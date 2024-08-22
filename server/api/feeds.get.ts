@@ -1,21 +1,28 @@
-import {$fetch} from "ofetch";
-import type {feedsInfo} from "~~/utils/api";
-import {validFeeds} from "~~/utils/api";
-import {BASE_URL} from "~~/server/utils/constants";
+import { $fetch } from 'ofetch'
+import type { feedsInfo } from '~~/utils/api'
+import { validFeeds } from '~~/utils/api'
+import { BASE_URL } from '~~/server/utils/constants'
 
-const feedUrls: Record<keyof typeof feedsInfo> = {
-    // ask: 'askstories',
-    // jobs: 'jobstories',
-    // show: 'showstories',
-    'mais-recente': 'newstories',
-    noticias: 'topstories',
+const feedUrls: Record<keyof typeof feedsInfo, string> = {
+  // ask: 'askstories',
+  // jobs: 'jobstories',
+  // show: 'showstories',
+  'mais-recente': 'newstories',
+  noticias: 'topstories'
 }
 
-export default defineCachedEventHandler(async event => {
-    const {page = '1', feed = 'noticias'} = getQuery(event)
+export default defineCachedEventHandler(async (event) => {
+  const { page = '1', feed = 'noticias' } = getQuery(event) as { page: string; feed: keyof typeof feedsInfo }
 
-    const data = await $fetch(`${BASE_URL}/${feedUrls[feed]}.json`)
-    // console.log('FETCHED', data)
+  if (!validFeeds.includes(feed) || String(Number(page)) !== page) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: `Must provide one of ${validFeeds.join(', ')} and a valid page number.`
+    })
+  }
 
-    return data
+  const data = await $fetch(`${BASE_URL}/${feedUrls[feed]}.json`)
+  // console.log('FETCHED', data)
+
+  return data
 })
