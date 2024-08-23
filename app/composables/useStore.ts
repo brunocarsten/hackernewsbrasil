@@ -87,5 +87,6 @@ export default function useStore() {
   return {
     payload,
     initialState,
+    getFeed,
   }
 }
